@@ -14,16 +14,16 @@ var searchInsert = function(nums, target) {
   let length = nums.length;
   let left = 0;
   let right = length;
-  let mid = length % 2 === 0 ? length / 2 : (length + 1) / 2;
+  let mid = Math.floor(length/2);
   while(left < right) {
     if(nums[mid] === target) {
       return mid;
     } else if(nums[mid] < target) {
-      left = mid;
-      mid = ((left + right) % 2) === 0 ? (left + right) / 2 : (left + right + 1) / 2;
+      left = mid + 1;
+      mid = Math.floor((left  + right)/2);
     } else {
       right = mid;
-      mid = ((left + right) % 2) === 0 ? (left + right) / 2 : (left + right + 1) / 2;
+      mid =  Math.floor((left  + right)/2);
     }
   }
   return mid;
@@ -41,3 +41,4 @@ searchInsert([1,3,5,6], 2)
 
 值得注意的是，二分查找要求待查找的数组必须是有序的。如果数组无序，需要先进行排序操作，然后再进行二分查找。
 **/
+// 注意边界缩小时要加一
